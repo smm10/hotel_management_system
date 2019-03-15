@@ -1,0 +1,198 @@
+<html>
+  <title>
+    Hotel room booking
+  </title>
+
+  <style>
+    a {
+      padding: 5px 0px;
+      text-decoration: none;
+    }
+
+    body {
+      box-sizing: border-box;
+
+      font-family: Georgia;
+      background: black;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      padding: 5px 5px;
+    }
+
+    .input {
+      padding: 10px 0px;
+      border: none;
+      display: block;
+      border: 1px solid black;
+      border-radius: 5px;
+
+      margin: 5px;
+      width: 500px;
+    }
+
+    .btn {
+      text-align: center;
+      border: none;
+      border-radius: 5px;
+      background: coral;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      display: block;
+    }
+
+    .btn-delete {
+      margin: 10px;
+      text-align: center;
+      border: none;
+      border-radius: 5px;
+      background: rgb(255, 0, 25);
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      display: block;
+    }
+
+    .btn-delete:hover {
+      background: rgb(178, 1, 19);
+    }
+
+    .container {
+      padding: 5px;
+
+      width: 600px;
+      background: white;
+      margin: auto;
+      border-radius: 5px;
+    }
+
+    .display {
+      margin: 10px 100px;
+      text-align: left;
+      width: 700px;
+      background: white;
+      width: 800px;
+      border-radius: 5px;
+      padding: 10px 0px;
+    }
+    .container_for_display {
+      margin: 10px;
+      border-radius: 5px;
+      border: 3px solid black;
+      background: rgb(209, 211, 214);
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <h1>Hotel room booking</h1>
+
+      <form>
+        <label>Name:</label>
+        <input type="text" id="name" placeholder="your name" class="input" />
+
+        <label>Address:</label>
+        <input type="text" id="address" placeholder="Address" class="input" />
+
+        <label>State:</label>
+        <input type="text" id="state" placeholder="State" class="input" />
+
+        <label>Email:</label>
+        <input type="text" id="email" placeholder="Email" class="input" />
+
+        <label>Mobile:</label>
+        <input
+          type="number"
+          id="mobile"
+          placeholder="Mobile no."
+          class="input"
+        />
+
+        <label>In Date:</label>
+        <input type="date" id="in-date" placeholder="In date" class="input" />
+
+        <label>Out Date:</label>
+        <input type="date" id="out-date" placeholder="Out date" class="input" />
+
+        <label>Room no:</label>
+        <input type="number" id="room-no" placeholder="Room No" class="input" />
+
+        <a href="#" class="btn" id="btn">Submit</a>
+      </form>
+    </div>
+
+    <br /><br />
+
+    <div class="display"></div>
+  </body>
+
+  <script>
+    display = document.querySelector(".display");
+    array = [];
+
+    submit = document.getElementById("btn");
+
+    submit.addEventListener("click", function(e) {
+      name = document.getElementById("name").value;
+      mobile = document.getElementById("mobile").value;
+      inDate = document.getElementById("in-date").value;
+      outDate = document.getElementById("out-date").value;
+      room = document.getElementById("room-no").value;
+
+      array.push([name, mobile, inDate, outDate, room]);
+      /*
+       <h1>Name: ${name}</h1>
+          <h1>RoomNo:${room}</h1>
+          <h2>Mobile No:${mobile}</h2>
+          <h3>In Date:${inDate}</h3>
+          <h4>Out Date:${outDate}</h4>
+          */
+      display.innerHTML = "";
+      array.forEach(element => {
+        display.innerHTML += `
+        <div class = "container_for_display">
+        <h1>Name: ${element[0]}</h1>
+          <h1>RoomNo:${element[4]}</h1>
+          <h2>Mobile No:${element[1]}</h2>
+          <h3>In Date:${element[2]}</h3>
+          <h4>Out Date:${element[3]}</h4>
+          <a href="#" class = "btn-delete">Delete</a>
+          </div>
+
+
+        `;
+      });
+
+      console.log(name);
+
+      e.preventDefault();
+    });
+
+
+    
+    delete_user = document.querySelector(".btn-delete");
+
+    delete_user.addEventListener("click", function(e) {
+      console.log("delete clicked");
+
+      /*
+      array_in_storage.forEach((element, index) => {
+        if (delete_user.parentNode.secondChild == element[4]) {
+          array_in_storage.splice(index, 1);
+          localStorage.setItem(
+            "hotel_management_system",
+            JSON.stringify(array_in_storage)
+          );
+        }
+      });
+      */
+
+      e.preventDefault();
+    });
+  </script>
+</html>
